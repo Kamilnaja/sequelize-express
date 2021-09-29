@@ -1,8 +1,6 @@
 const bodyParser = require("body-parser");
 const express = require("express");
-const { Sequelize } = require("sequelize");
 const sequelize = require("./sequelize");
-const Category = require("./models/categories.model");
 const routes = require("./routes/router");
 const morgan = require("morgan");
 const app = express();
