@@ -1,19 +1,23 @@
-const bodyParser = require('body-parser');
-const express = require('express');
-const { Sequelize } = require('sequelize');
-const sequelize = require('./sequelize');
-const category = require('./models/categories.model');
-
+const bodyParser = require("body-parser");
+const express = require("express");
+const { Sequelize } = require("sequelize");
+const sequelize = require("./sequelize");
+const Category = require("./models/categories.model");
+const routes = require("./routes/router");
+const morgan = require("morgan");
 const app = express();
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
+app.use(morgan());
+app.use("/api", routes);
 
 async function assertDatabaseConnectionOk() {
   try {
     await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
+    console.log("Connection has been established successfully.");
   } catch (error) {
-    console.error('Unable to connect to the database:', error);
+    console.error("Unable to connect to the database:", error);
   }
 }
 
@@ -22,15 +26,6 @@ async function init() {
 }
 
 init();
-
-async function getUsers() {
-  const categories = await category.findAll();
-  return categories;
-}
-
-app.get('/categories', (req, res) => {
-  res.send(getUsers());
-});
 
 app.listen(3000, () => {
   console.log(`listening on localhost:3000`);

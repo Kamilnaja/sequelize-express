@@ -1,15 +1,16 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes, Model, Sequelize } = require("sequelize");
+const sequelize = require("../sequelize");
+const Category = sequelize.define("category", {
+  id: {
+    allowNull: false,
+    type: DataTypes.UUID,
+    unique: true,
+    primaryKey: true,
+  },
+  name: {
+    allowNull: false,
+    type: DataTypes.STRING(100),
+  },
+});
 
-module.exports = (sequelize) => {
-  sequelize.defined('category', {
-    id: {
-      allowNull: false,
-      type: DataTypes.UUID,
-      unique: true,
-    },
-    name: {
-      allowNull: false,
-      type: DataTypes.STRING(100),
-    },
-  });
-};
+module.exports = Category;
