@@ -1,17 +1,35 @@
 const bodyParser = require('body-parser');
 const express = require('express');
-const app = express();
+const { Sequelize } = require('sequelize');
+const sequelize = require('./sequelize');
+const category = require('./models/categories.model');
 
+const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
-app.get('/api/:role/:name', (req, res) => {
-  res.end(JSON.stringify(req.body) + '\r\n');
-});
+async function assertDatabaseConnectionOk() {
+  try {
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+}
 
-app.post('/api/', (req, res) => {
-  console.log(req.route);
-  res.end(JSON.stringify(req.body) + '\r\n');
+async function init() {
+  await assertDatabaseConnectionOk();
+}
+
+init();
+
+async function getUsers() {
+  const categories = await category.findAll();
+  return categories;
+}
+
+app.get('/categories', (req, res) => {
+  res.send(getUsers());
 });
 
 app.listen(3000, () => {
