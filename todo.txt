@@ -1,2 +1,3 @@
-create crud for product 
-generate uuid for category 
+x connecting students with oceny 
+address as separate table 
+Przedmioty as separate table 

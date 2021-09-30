@@ -1,8 +1,9 @@
-const { DataTypes, Sequelize } = require('sequelize');
-const sequelize = require('../sequelize');
+const { DataTypes, Sequelize } = require("sequelize");
+const sequelize = require("../sequelize");
+const Ocena = require("./oceny.model");
 
-const Student = sequelize.define('student', {
-  id: {
+const Student = sequelize.define("student", {
+  nr_indeksu: {
     // nr indeksu
     type: DataTypes.UUID,
     primaryKey: true,
@@ -28,6 +29,11 @@ const Student = sequelize.define('student', {
     type: DataTypes.STRING(6),
     allowNull: false,
   },
+});
+
+Student.hasMany(Ocena);
+Ocena.belongsTo(Student, {
+  foreignKey: "nr_indeksu",
 });
 
 module.exports = Student;
