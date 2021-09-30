@@ -1,8 +1,8 @@
-const bodyParser = require("body-parser");
-const express = require("express");
-const sequelize = require("./sequelize");
-const routes = require("./routes/categories");
-const morgan = require("morgan");
+const bodyParser = require('body-parser');
+const express = require('express');
+const morgan = require('morgan');
+const initializeDb = require('./db/initializeDb');
+
 const app = express();
 
 const errorHandler = (err, req, res, next) => {
@@ -18,26 +18,11 @@ const errorHandler = (err, req, res, next) => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(morgan("combined"));
-
-app.use("/api/categories", routes);
+app.use(morgan('combined'));
 
 app.use(errorHandler);
 
-async function assertDatabaseConnectionOk() {
-  try {
-    await sequelize.authenticate();
-    console.log("Connection has been established successfully.");
-  } catch (error) {
-    console.error("Unable to connect to the database:", error);
-  }
-}
-
-async function init() {
-  await assertDatabaseConnectionOk();
-}
-
-init();
+initializeDb.initDb();
 
 app.listen(3000, () => {
   console.log(`listening on localhost:3000`);
