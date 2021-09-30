@@ -1,0 +1,2 @@
+create crud for product 
+generate uuid for category 

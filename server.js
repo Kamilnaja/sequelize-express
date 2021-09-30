@@ -6,12 +6,13 @@ const morgan = require("morgan");
 const app = express();
 
 const errorHandler = (err, req, res, next) => {
-  res.json(
-    err.errors.map((item) => ({
-      message: item.message,
-      type: item.type,
-    }))
-  );
+  const error = err.errors
+    ? err.errors?.map((item) => ({
+        message: item.message,
+        type: item.type,
+      }))
+    : err;
+  res.json(error);
   next();
 };
 
