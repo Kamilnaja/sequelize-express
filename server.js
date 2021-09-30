@@ -1,7 +1,7 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const morgan = require('morgan');
-const initializeDb = require('./db/initializeDb');
+const db = require('./db/initializeDb');
 
 const app = express();
 
@@ -22,7 +22,7 @@ app.use(morgan('combined'));
 
 app.use(errorHandler);
 
-initializeDb.initDb();
+db.initDb();
 
 app.listen(3000, () => {
   console.log(`listening on localhost:3000`);

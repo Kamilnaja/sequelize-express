@@ -9,10 +9,13 @@ const Ocena = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    nr_indeksu: { type: DataTypes.UUID, references: {} },
+    nr_indeksu: { type: DataTypes.UUID },
     przedmiot: { type: DataTypes.STRING(15) },
     ocena: { type: DataTypes.INTEGER },
   },
-  { tableName: 'oceny' }
+  {
+    tableName: 'oceny',
+  }
 );
+
 module.exports = Ocena;
