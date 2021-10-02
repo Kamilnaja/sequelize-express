@@ -13,8 +13,12 @@ const findSubjectById = async (id) => {
   });
 };
 
+const findSubjectByName = async (name) => {
+  return await Przedmiot.findOne({ where: { przedmiot: name } });
+};
+
 const createSubject = async (subject) => {
-  return await Przedmiot.create({ przedmiot: subject.przedmiot });
+  return await Przedmiot.create({ przedmiot: subject });
 };
 
 const updateSubject = async (subject, updatedSubject) => {
@@ -35,4 +39,5 @@ module.exports = {
   createSubject,
   updateSubject,
   deleteSubject,
+  findSubjectByName,
 };

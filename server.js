@@ -12,10 +12,10 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('combined'));
-app.use(errorHandler);
 
 app.use('/grades', gradesRouter);
 app.use('/subjects', subjectsRouter);
+app.use(errorHandler);
 
 app.listen(port, async () => {
   await db.assertDatabaseConnectionOk();
