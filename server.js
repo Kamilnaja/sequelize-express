@@ -1,26 +1,18 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const morgan = require('morgan');
-
+const db = require('./db/initializeDb');
+const errorHandler = require('./error-handler');
 const app = express();
 
-const errorHandler = (err, req, res, next) => {
-  const error = err.errors
-    ? err.errors?.map((item) => ({
-        message: item.message,
-        type: item.type,
-      }))
-    : err;
-  res.json(error);
-  next();
-};
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('combined'));
-
 app.use(errorHandler);
 
-app.listen(3000, () => {
-  console.log(`listening on localhost:3000`);
+app.listen(port, async () => {
+  await db.initDb();
+  console.log(`listening on localhost:${port}`);
 });

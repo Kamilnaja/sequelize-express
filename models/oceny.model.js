@@ -1,8 +1,8 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require("../db");
+const { DataTypes } = require('sequelize');
+const sequelize = require('../db');
 
 const Ocena = sequelize.define(
-  "oceny",
+  'oceny',
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,9 +11,19 @@ const Ocena = sequelize.define(
     },
     przedmiot: { type: DataTypes.STRING(15) },
     ocena: { type: DataTypes.INTEGER },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      defaultValue: sequelize.literal('NOW()'),
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      defaultValue: sequelize.literal('NOW()'),
+    },
   },
   {
-    tableName: "oceny",
+    tableName: 'oceny',
   }
 );
 

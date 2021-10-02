@@ -1,9 +1,9 @@
-const sequelize = require("../db");
-const { DataTypes, Sequelize } = require("sequelize");
-const Student = require("./students.model");
+const sequelize = require('../db');
+const { DataTypes, Sequelize } = require('sequelize');
+const Student = require('./students.model');
 
 const Adres = sequelize.define(
-  "adres",
+  'adresy',
   {
     id: {
       type: DataTypes.UUID,
@@ -22,16 +22,24 @@ const Adres = sequelize.define(
       type: DataTypes.STRING(6),
       allowNull: false,
     },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      defaultValue: sequelize.literal('NOW()'),
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      defaultValue: sequelize.literal('NOW()'),
+    },
   },
   {
-    tableName: "adresy",
+    tableName: 'adresy',
+    freezeTableName: true,
   }
 );
 
+Student.belongsTo(Adres);
 Adres.hasMany(Student);
-Student.belongsTo(Adres, {
-  foreignKey: "adresId",
-  as: "adres",
-});
 
 module.exports = Adres;
