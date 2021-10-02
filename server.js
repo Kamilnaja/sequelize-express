@@ -1,7 +1,6 @@
-const bodyParser = require("body-parser");
-const express = require("express");
-const morgan = require("morgan");
-const db = require("./db/initializeDb");
+const bodyParser = require('body-parser');
+const express = require('express');
+const morgan = require('morgan');
 
 const app = express();
 
@@ -18,11 +17,9 @@ const errorHandler = (err, req, res, next) => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(morgan("combined"));
+app.use(morgan('combined'));
 
 app.use(errorHandler);
-
-db.initDb().catch((e) => console.log(e));
 
 app.listen(3000, () => {
   console.log(`listening on localhost:3000`);

@@ -1,3 +1,6 @@
 x connecting students with oceny 
-address as separate table 
+x address as separate table 
 Przedmioty as separate table 
+normalize case in oceny array
+x remove starting code
+endpoint for students, aders, oceny
