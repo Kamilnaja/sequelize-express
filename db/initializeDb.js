@@ -1,7 +1,7 @@
 const Ocena = require('../models/oceny.model');
-const Student = require('../models/students.model');
+const Student = require('../models/studenci.model');
 const sequelize = require('../db');
-const Adres = require('../models/adres.model');
+const Adres = require('../models/adresy.model');
 
 const assertDatabaseConnectionOk = async () => {
   try {
