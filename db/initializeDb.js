@@ -3,7 +3,7 @@ const Student = require('./models/students.model');
 const Adres = require('./models/adresses.model');
 const Przedmioty = require('./models/subjects.model');
 
-const sequelize = require('../db');
+const sequelize = require('./db');
 
 const assertDatabaseConnectionOk = async () => {
   try {
