@@ -1,25 +1,21 @@
-const sequelize = require('../db');
 const { DataTypes, Sequelize } = require('sequelize');
-const Student = require('./studenci.model');
+const sequelize = require('../../db');
+const Ocena = require('./grades.model');
 
-const Adres = sequelize.define(
-  'adresy',
+const Student = sequelize.define(
+  'student',
   {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
       defaultValue: Sequelize.UUIDV4,
     },
-    ulica: {
+    nazwisko: {
       type: DataTypes.STRING(30),
-      allowNull: true,
+      allowNull: false,
     },
-    miasto: {
-      type: DataTypes.STRING(20),
-      allowNull: true,
-    },
-    kod: {
-      type: DataTypes.STRING(6),
+    imie: {
+      type: DataTypes.STRING(15),
       allowNull: false,
     },
     createdAt: {
@@ -34,12 +30,11 @@ const Adres = sequelize.define(
     },
   },
   {
-    tableName: 'adresy',
-    freezeTableName: true,
+    tableName: 'studenci',
   }
 );
 
-Student.belongsTo(Adres);
-Adres.hasMany(Student);
+Student.hasMany(Ocena);
+Ocena.belongsTo(Student);
 
-module.exports = Adres;
+module.exports = Student;

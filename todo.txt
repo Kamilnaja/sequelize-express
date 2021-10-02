@@ -1,2 +1,2 @@
-Przedmioty as separate table 
-endpoint for students, aders, oceny
+x Przedmioty as separate table 
+crud actions for oceny

@@ -10,12 +10,21 @@ insert into
   ('73bd76fc-2368-11ec-9621-0242ac130002', 'Rosyjska', 'Rzeszów', '20-021'),
   ('76f20d7e-2368-11ec-9621-0242ac130002', 'Ukraińska', 'Horodło', '22-523');
 
-insert into studenci (id, nazwisko, imie, "adresId") 
+insert into studenci (id, nazwisko, imie, "adresyId") 
 values 
   ('a0ea937c-643e-4116-b936-f3c8d261e87c', 'Marcin', 'Konopnicki', 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11'),
   ('e00c6f91-11a8-4e58-8b88-ee44e34291f9', 'Karol', 'Krawczyk', '6c72616e-2368-11ec-9621-0242ac130002');
 
-insert into oceny (id, przedmiot, ocena, "studentId") 
+insert into oceny (id, "przedmiotId", ocena, "studentId") 
 values 
-  (1, 'matematyka', 3, 'a0ea937c-643e-4116-b936-f3c8d261e87c'),
-  (2, 'fizyka', 2, 'a0ea937c-643e-4116-b936-f3c8d261e87c');
+  (1, 5, 3, 'a0ea937c-643e-4116-b936-f3c8d261e87c'),
+  (2, 2, 2, 'a0ea937c-643e-4116-b936-f3c8d261e87c');
+
+insert into przedmioty (przedmiot) 
+values 
+  ('chemia'),
+  ('fizyka'),
+  ('j.angielski'),
+  ('j.niemiecki'),
+  ('matematyka'),
+  ('wf');

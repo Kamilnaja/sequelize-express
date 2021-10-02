@@ -1,16 +1,19 @@
+const sequelize = require('../../db');
 const { DataTypes } = require('sequelize');
-const sequelize = require('../db');
+const Ocena = require('./grades.model');
 
-const Ocena = sequelize.define(
-  'oceny',
+const Przedmiot = sequelize.define(
+  'przedmiot',
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    przedmiot: { type: DataTypes.STRING(15) },
-    ocena: { type: DataTypes.INTEGER },
+    przedmiot: {
+      type: DataTypes.STRING(15),
+      allowNull: false,
+    },
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE,
@@ -23,8 +26,11 @@ const Ocena = sequelize.define(
     },
   },
   {
-    tableName: 'oceny',
+    tableName: 'przedmioty',
   }
 );
 
-module.exports = Ocena;
+Przedmiot.hasMany(Ocena);
+Ocena.belongsTo(Przedmiot);
+
+module.exports = Przedmiot;

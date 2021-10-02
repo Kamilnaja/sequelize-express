@@ -1,7 +1,9 @@
-const Ocena = require('../models/oceny.model');
-const Student = require('../models/studenci.model');
+const Ocena = require('./models/grades.model');
+const Student = require('./models/students.model');
+const Adres = require('./models/adresses.model');
+const Przedmioty = require('./models/subjects.model');
+
 const sequelize = require('../db');
-const Adres = require('../models/adresy.model');
 
 const assertDatabaseConnectionOk = async () => {
   try {
@@ -14,8 +16,10 @@ const assertDatabaseConnectionOk = async () => {
 
 const initDb = async () => {
   await assertDatabaseConnectionOk();
+
   await Adres.sync({ force: true });
   await Student.sync({ force: true });
+  await Przedmioty.sync({ force: true });
   await Ocena.sync({ force: true });
 };
 
