@@ -17,12 +17,16 @@ const createSubject = async (subject) => {
   return await Przedmiot.create({ przedmiot: subject.przedmiot });
 };
 
-const updateSubject = async (id, updatedSubject) => {
-  return await Przedmiot.findByPk(id)
-    .then((subject) => {
-      subject.update({ przedmiot: updatedSubject });
-    })
-    .catch((err) => err);
+const updateSubject = async (subject, updatedSubject) => {
+  return await subject.update({ przedmiot: updatedSubject });
+};
+
+const deleteSubject = async (subject, id) => {
+  return await subject.destroy({
+    where: {
+      id,
+    },
+  });
 };
 
 module.exports = {
@@ -30,4 +34,5 @@ module.exports = {
   findSubjectById,
   createSubject,
   updateSubject,
+  deleteSubject,
 };

@@ -30,15 +30,29 @@ router.post('/', async (req, res, next) => {
 });
 
 router.put('/:id', async (req, res, next) => {
-  const body = req.body;
   try {
     const item = await subjectCtrl.findSubjectById(req.params.id);
     if (item) {
+      await subjectCtrl.updateSubject;
       res.send(item);
     } else {
-      next({
-        errors: 'Niepoważne podejście do problemu',
-      });
+      res.statusCode = 404;
+      res.send({ error: 'item not found' });
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const item = await subjectCtrl.findSubjectById(req.params.id);
+    if (item) {
+      await subjectCtrl.deleteSubject(item, req.params.id);
+      res.send();
+    } else {
+      res.statusCode = 404;
+      res.send({ error: 'item not found' });
     }
   } catch (err) {
     next(err);
