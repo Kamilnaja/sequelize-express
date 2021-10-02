@@ -1,5 +1,6 @@
 delete from adresy where id is NOT NULL;
 delete from studenci where imie is NOT NULL;
+delete from przedmioty where przedmiot is NOT NULL;
 delete from oceny where id is NOT NULL;
 
 insert into 
@@ -15,10 +16,6 @@ values
   ('a0ea937c-643e-4116-b936-f3c8d261e87c', 'Marcin', 'Konopnicki', 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11'),
   ('e00c6f91-11a8-4e58-8b88-ee44e34291f9', 'Karol', 'Krawczyk', '6c72616e-2368-11ec-9621-0242ac130002');
 
-insert into oceny (id, "przedmiotId", ocena, "studentId") 
-values 
-  (1, 5, 3, 'a0ea937c-643e-4116-b936-f3c8d261e87c'),
-  (2, 2, 2, 'a0ea937c-643e-4116-b936-f3c8d261e87c');
 
 insert into przedmioty (przedmiot) 
 values 
@@ -28,3 +25,8 @@ values
   ('j.niemiecki'),
   ('matematyka'),
   ('wf');
+
+insert into oceny (id, "przedmiotId", ocena, "studentId") 
+values 
+  (1, 5, 3, 'a0ea937c-643e-4116-b936-f3c8d261e87c'),
+  (2, 2, 2, 'a0ea937c-643e-4116-b936-f3c8d261e87c');

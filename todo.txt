@@ -1,2 +1,3 @@
+(A) crud actions for subject 
 x Przedmioty as separate table 
 crud actions for oceny

@@ -15,8 +15,6 @@ const assertDatabaseConnectionOk = async () => {
 };
 
 const initDb = async () => {
-  await assertDatabaseConnectionOk();
-
   await Adres.sync({ force: true });
   await Student.sync({ force: true });
   await Przedmioty.sync({ force: true });
@@ -25,4 +23,5 @@ const initDb = async () => {
 
 module.exports = {
   initDb,
+  assertDatabaseConnectionOk,
 };
